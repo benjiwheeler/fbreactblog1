@@ -1,3 +1,5 @@
+const TARGET = process.env.npm_lifecycle_event;
+process.env.BABEL_ENV = TARGET;
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
@@ -36,7 +38,8 @@ module.exports = {
       new CopyWebpackPlugin([
         { from: 'public' }
       ]),
-      new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js")
+      new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js"),
+      new webpack.HotModuleReplacementPlugin()
     ],
     devtool: 'eval',
     devServer: {
