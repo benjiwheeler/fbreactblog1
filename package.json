@@ -15,11 +15,14 @@
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-survivejs-kanban": "^0.3.3",
     "copy-webpack-plugin": "^1.1.1",
-    "webpack": "^1.12.14"
+    "webpack": "^1.12.14",
+    "webpack-dev-server": "^1.14.1",
+    "webpack-merge": "^0.8.4"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack",
+    "start": "webpack-dev-server"
   },
   "repository": {
     "type": "git",

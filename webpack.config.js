@@ -1,10 +1,16 @@
+const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-    entry: "./src/app.js",
+//    entry: "./src/app.jsx",
+  entry: {
+    bundle: "./src/app.jsx",
+    vendor: ['react', 'react-dom']
+  },
     output: {
         path: __dirname + "/dist",
-        filename: "bundle.js"
+        filename: "bundle.js",
+        publicPath: "/"
     },
     module: {
       loaders: [
@@ -27,8 +33,36 @@ module.exports = {
       ]
     },
     plugins: [
-        new CopyWebpackPlugin([
-          { from: 'public' }
-        ])
-      ]
+      new CopyWebpackPlugin([
+        { from: 'public' }
+      ]),
+      new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js")
+    ],
+    devtool: 'eval',
+    devServer: {
+      contentBase: __dirname + "/dist",
+
+      // Enable history API fallback so HTML5 History API based
+      // routing works. This is a good default that will come
+      // in handy in more complicated setups.
+      historyApiFallback: true,
+      hot: true,
+      inline: true,
+      progress: true,
+      colors: true,
+
+      // Display only errors to reduce the amount of output.
+      stats: 'errors-only',
+
+      // Parse host and port from env so this is easy to customize.
+      //
+      // If you use Vagrant or Cloud9, set
+      // host: process.env.HOST || '0.0.0.0';
+      //
+      // 0.0.0.0 is available to all network devices unlike default
+      // localhost
+      host: process.env.HOST,
+      port: process.env.PORT || 3388
+    }
+
 };

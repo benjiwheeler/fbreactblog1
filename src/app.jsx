@@ -2,9 +2,11 @@ import React from 'react';
 
 import { render } from 'react-dom';
 
+import Ben from './ben.jsx';
+
 render(
   (
-    <div>dffdsf</div>
+    <Ben />
   ),
   document.getElementById('app')
 );
