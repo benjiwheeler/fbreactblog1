@@ -1,4 +1,5 @@
 import React from 'react'
+import {addMessage} from './actions.js'
 
 export default class AddForm extends React.Component {
   constructor(props) { // list of objects
@@ -16,7 +17,7 @@ export default class AddForm extends React.Component {
 
   onTextSubmit(event) {
     event.preventDefault();
-    this.props.addMessage(this.state.text);
+    addMessage(this.state.text);
     this.setState({
       text: ""
     })
