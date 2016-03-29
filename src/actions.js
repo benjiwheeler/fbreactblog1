@@ -1,4 +1,5 @@
 import Store from './store.js'
+import $ from 'jquery'
 
 export function provideInitialState() {
   Store.setState({
@@ -15,4 +16,12 @@ export function addMessage(message) {
 
 export function setShowAddForm(doShow) {
   Store.setState({showAddForm: doShow});
+}
+
+export function requestToServer() {
+  $.ajax({
+    url: "http://localhost:3000/abc"
+  }).then(function(response) {
+    debugger;
+  });
 }

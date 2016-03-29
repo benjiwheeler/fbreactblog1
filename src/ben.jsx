@@ -3,7 +3,7 @@ import MessagesArray from './messagesArray.jsx'
 import AddForm from './addForm.jsx'
 import Peter from './peter.jsx'
 import Store from './store.js'
-import {provideInitialState, setShowAddForm} from './actions.js'
+import {provideInitialState, setShowAddForm, requestToServer} from './actions.js'
 
 export default class Ben extends React.Component {
   // Component provides setState function, which will eventually render; may wait until
@@ -23,6 +23,7 @@ export default class Ben extends React.Component {
   componentWillMount() { // called by React.Component
     Store.attachListener(this, ["series", "showAddForm"]);
     provideInitialState();
+    requestToServer();
   }
 
   componentWillUnmount() {
